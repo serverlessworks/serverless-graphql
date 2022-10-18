@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { NodejsFunction, OutputFormat } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
@@ -10,9 +10,15 @@ export class AppStack extends Stack {
     super(scope, id, props);
 
     const graphqlLambda = new NodejsFunction(this, "graphqlLambda", {
-      entry: `${__dirname}/../src/lambda.ts`,
+      entry: "src/lambda.ts",
       runtime: Runtime.NODEJS_16_X,
       logRetention: RetentionDays.ONE_WEEK,
+      bundling: {
+        format: OutputFormat.ESM,
+        target: "es2022",
+        minify: true,
+        banner: "import { createRequire } from 'module';const require = createRequire(import.meta.url);"
+      },
     });
 
     const api = new LambdaRestApi(this, "graphqlEndpoint", {

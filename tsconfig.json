@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "module": "commonjs",
+    "module": "es2022",
+    "moduleResolution": "Node",
     "lib": [
-      "es2018"
+      "es2022"
     ],
     "declaration": true,
     "strict": true,
@@ -23,8 +24,13 @@
       "./node_modules/@types"
     ]
   },
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "cdk.out"
-  ]
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }
