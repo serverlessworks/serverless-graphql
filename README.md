@@ -2,9 +2,9 @@
 
 AWS Lambda - Apollo GraphQL - Typescript - CDK
 
-This is a blank project for CDK development with TypeScript.
+`ts-node` for transpiling and running localy the app, `esbuild` for transpiling and bundling the app 
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The `cdk.json` file tells the CDK Toolkit how to execute your app infrastructure.
 
 ## Create an AWS profile for deploting the app
 [This article](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html) how to create and aws profile file and add your aws credentials into it. 
